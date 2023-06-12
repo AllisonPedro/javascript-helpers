@@ -1,3 +1,4 @@
+import { arrayConstructor } from './classArray.js';
 export function getValue (input) {
     if (!input.value){
         return false;
@@ -9,6 +10,8 @@ export function resetValue (input) {
 }
 
 export default function selectElements() {
+    const arrayData = new arrayConstructor([]);
+
     //inputs
     const inputfirstName = document.getElementById('inputfirstName');
     const inputlastName = document.getElementById('inputlastName');
@@ -27,7 +30,10 @@ export default function selectElements() {
         },
         buttons: {
             btnAddItem,
-        }
+        },
+        arrayData,
+
+
     }
     return { components };
 }

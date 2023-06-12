@@ -1,9 +1,7 @@
 import getElements from './querySelector.js';
-const { components:{buttons,containers,inputs} } = getElements();
+const { components:{ buttons, inputs } } = getElements();
 import { getValue } from './querySelector.js';
-import { ClassCounter } from './classCounter.js';
-import { templateInnerHtml } from './template.js';
-let count = new ClassCounter();
+import createTemplate from './createTemplate.js';
 
 const main = () => {
     [inputs.inputfirstName, inputs.inputlastName].forEach(input => {
@@ -15,24 +13,10 @@ const main = () => {
     })
 
     buttons.btnAddItem.addEventListener('click', () => {
-        const inputfirstName = getValue(inputs.inputfirstName);
-        const inputlastName  = getValue(inputs.inputlastName);
-
-        if (!inputfirstName || !inputlastName){
+        if (!getValue(inputs.inputfirstName) || !getValue(inputs.inputlastName)){
             return false;
         }
-
-        count.increment();
-        const position = count.getCount();
-        const dataForTemplate = { inputfirstName, inputlastName, position };
-        templateInnerHtml(dataForTemplate, containers.tableName);
+        createTemplate();
     });
-
-
-
-
-
-
-
 }
 main();
