@@ -1,5 +1,5 @@
-import getElements from './querySelector.js';
-const { components:{ buttons, inputs } } = getElements();
+import selectElements from './querySelector.js';
+const { components:{ buttons, inputs } } = selectElements();
 import { getValue } from './querySelector.js';
 import createTemplate from './createTemplate.js';
 
@@ -16,6 +16,7 @@ const main = () => {
         if (!getValue(inputs.inputfirstName) || !getValue(inputs.inputlastName)){
             return false;
         }
+
         createTemplate();
     });
 }

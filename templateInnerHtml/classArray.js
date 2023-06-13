@@ -4,11 +4,9 @@ export class arrayConstructor {
     }
     push(item) {
         this.array.push(item);
-        // this.array.map((item, index) => {
-        //     if (item.position !== index + 1) {
-        //         item.position = index + 1;
-        //     }
-        // });
+    }
+    updateValueIndex(item, index) {
+        this.array[index] = item;
     }
     remove(item) {
 
