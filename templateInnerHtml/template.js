@@ -1,4 +1,4 @@
-import selectElements, { arrayData } from './querySelector.js';
+import selectElements, {arrayData} from './querySelector.js';
 const { components:{ containers:{ tableName } } } = selectElements();
 
 export function template (item, index){
@@ -13,7 +13,7 @@ export function template (item, index){
     `
 }
 
-export function templateInnerHtml (data = arrayData.get()){
+export function templateInnerHtml (data = arrayData.getAll()){
 
     tableName.innerHTML = '';
     data.forEach((item, index) => {
@@ -41,18 +41,61 @@ export function templateInnerHtml (data = arrayData.get()){
                     if (!firstName || !lastName) {
                         Swal.showValidationMessage('Por favor, preencha ambos os campos');
                     }
-                    return { firstName: firstName, lastName: lastName };
+                    if (firstName == item.firstName && lastName == item.lastName) {
+                        Swal.showValidationMessage('Os dados digitados são iguais aos já existentes');
+                    }
+
+                    const data = {
+                        firstName: firstName,
+                        lastName: lastName,
+                    }
+
+                    return data;
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
                     const { firstName, lastName } = result.value;
-                    Swal.fire(`Nome: ${firstName}, Sobrenome: ${lastName}`);
+
+                    const data = {
+                        firstName: firstName,
+                        lastName: lastName
+                    }
+
+                    arrayData.put(data, index);
+                    templateInnerHtml();
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
             });
 
         });
         tr.querySelector(`[delete="${index}"]`).addEventListener('click', () => {
+            Swal.fire({
+                title: 'He is sure?',
+                text: 'Do you want to delete this item?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
 
+                    arrayData.delete(index);
+                    templateInnerHtml();
+
+                    Swal.fire(
+                        'Deletado!',
+                        'Seu item foi deletado com sucesso.',
+                        'success'
+                    );
+                }
+            });
 
         });
 

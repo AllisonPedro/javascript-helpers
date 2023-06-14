@@ -1,8 +1,6 @@
 import { arrayConstructor } from './classArray.js';
 
 export default function selectElements() {
-    // const arrayData = new arrayConstructor([]);
-
 
     //inputs
     const inputfirstName = document.getElementById('inputfirstName');
@@ -23,8 +21,6 @@ export default function selectElements() {
         buttons: {
             btnAddItem,
         },
-        // arrayData,
-
 
     }
     return { components };

@@ -5,13 +5,13 @@ export class arrayConstructor {
     push(item) {
         this.array.push(item);
     }
-    updateValueIndex(item, index) {
+    put(item, index) {
         this.array[index] = item;
     }
-    remove(item) {
-
+    delete(index) {
+        this.array.splice(index, 1);
     }
-    get() {
+    getAll() {
         return this.array;
     }
 }

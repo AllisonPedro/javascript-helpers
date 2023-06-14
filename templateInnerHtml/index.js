@@ -5,7 +5,7 @@ import createTemplate from './createTemplate.js';
 
 const main = () => {
     [inputs.inputfirstName, inputs.inputlastName].forEach(input => {
-        input.addEventListener('input', (event) => {
+        input.addEventListener('input', () => {
             if (getValue(inputs.inputfirstName) && getValue(inputs.inputlastName))
                 return buttons.btnAddItem.disabled = false;
             return buttons.btnAddItem.disabled = true;
