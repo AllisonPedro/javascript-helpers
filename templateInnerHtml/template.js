@@ -21,6 +21,7 @@ export function templateInnerHtml (data = arrayData.getAll()){
         tr.setAttribute('id', `tr-${index}`);
         tr.innerHTML = template(item, index);
 
+        // events edit
         tr.querySelector(`[edit="${index}"]`).addEventListener('click', () => {
 
             const html = `
@@ -75,6 +76,7 @@ export function templateInnerHtml (data = arrayData.getAll()){
             });
 
         });
+        // events delete
         tr.querySelector(`[delete="${index}"]`).addEventListener('click', () => {
             Swal.fire({
                 title: 'He is sure?',
@@ -90,8 +92,8 @@ export function templateInnerHtml (data = arrayData.getAll()){
                     templateInnerHtml();
 
                     Swal.fire(
-                        'Deletado!',
-                        'Seu item foi deletado com sucesso.',
+                        'Deleted!',
+                        'Your item has been successfully deleted.',
                         'success'
                     );
                 }
@@ -99,6 +101,7 @@ export function templateInnerHtml (data = arrayData.getAll()){
 
         });
 
+        // insert tr in table
         tableName.insertBefore(tr, tableName.firstChild);
     });
 

@@ -1,6 +1,5 @@
-import selectElements from './querySelector.js';
+import selectElements, { getValue } from './querySelector.js';
 const { components:{ buttons, inputs } } = selectElements();
-import { getValue } from './querySelector.js';
 import createTemplate from './createTemplate.js';
 
 const main = () => {
